@@ -1,0 +1,151 @@
+:root {
+  --color-fondo: #050706;
+  --color-fondo-secundario: #2466d1;
+  --color-principal: #233ca8;
+  --color-secundario: #330944;
+
+  --fs-xl: 10vw;
+  --fs-600: 2rem;
+  --fs-400: 1rem;
+}
+
+/*Utility Classes*/
+
+.flex{
+  display: flex;
+  gap: var(--gap, 1rem);
+}
+
+
+
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-fondo);
+  margin: 0;
+  padding: 0;
+  font-family: 'Josefin Sans', sans-serif;
+  color: white;
+  overflow-x: hidden;
+  display: grid;
+}
+
+
+/*header*/
+.primary-header{
+  align-items:center;
+  justify-content: space-between;
+  position: fixed;
+  width: 100vw;
+  top:0;
+}
+
+.mobile-toggle-nav{
+  display:none;
+}
+
+.logo{
+  width: 150px;
+  height: 150px;
+}
+
+.primary-nav{
+  list-style: none;
+  background: hsl(0 0% 0% / .95);
+}
+
+@supports(backdrop-filter: blur(1rem)){
+  .primary-nav{
+    background: hsl(0 0% 100% / .1);
+    backdrop-filter: blur(1rem);
+  }
+}
+
+.primary-nav a {
+  padding-block: 2rem;
+  padding-inline: clamp(0.025rem,1.5vw,3rem);
+  text-decoration: none;
+  color: #ffff;
+}
+
+.primary-nav li {
+  padding-block: 2rem;
+  padding-inline: clamp(0.025rem,1.5vw,3rem);
+}
+
+.primary-nav li:hover{
+  background: rgba(56, 54, 54, 0.95);
+}
+
+.active{
+  background: rgba(139, 139, 139, 0.95);
+}
+
+
+@media (min-width: 50em){
+  .primary-nav{
+    --gap: 3rem;
+    padding-inline: clamp(1.5rem, 10vw ,15rem);
+  }
+
+}
+
+
+@media (max-width: 50em){
+  .primary-nav{
+    --gap: 2em;
+    position: fixed;
+    z-index: 1000;
+    inset: 0 0 0 30%;
+
+    flex-direction: column;
+    padding: min(30vh,10rem) 2em;
+
+    transform: translateX(100%);
+    transition: transform 350ms ease-in-out;
+    
+    
+  }
+
+  .primary-nav[data-visible="true"]{
+    transform: translateX(0%);
+    
+  }
+
+  .mobile-toggle-nav{
+    display: block;
+    position: absolute;
+    z-index: 9999;
+    background-color: transparent;
+    background-image: url(../Images/HamburgerMenu.png);
+    background-size: 1.7rem;
+    width:1.7rem;
+    border:0;
+    aspect-ratio: 1;
+    top:2rem;
+    right:2rem;
+  }
+
+  .mobile-toggle-nav[aria-expanded="true"]{
+    background-image: url(../Images/eliminar.png);
+    background-size: 1.8rem;
+  }
+}
+
+
+/*Secciones*/
+section{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-600);
+}
